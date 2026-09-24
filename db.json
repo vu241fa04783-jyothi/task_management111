@@ -1,0 +1,72 @@
+{
+  "tasks": [
+    {
+      "id": "101",
+      "title": "Prepare project presentation",
+      "description": "Create the final slides and practice the introduction.",
+      "priority": "High",
+      "assignedTo": "Ananya",
+      "status": "in-progress",
+      "dueDate": "2026-09-26",
+      "category": "Development"
+    },
+    {
+      "id": "102",
+      "title": "Review database design",
+      "description": "Check the task tables and verify the sample records.",
+      "priority": "Medium",
+      "assignedTo": "Kiran",
+      "status": "todo",
+      "dueDate": "2026-09-28",
+      "category": "Planning"
+    },
+    {
+      "id": "103",
+      "title": "Update documentation",
+      "description": "Add setup steps and explain the main features.",
+      "priority": "Low",
+      "assignedTo": "Meera",
+      "status": "completed",
+      "dueDate": "2026-09-23",
+      "category": "Study"
+    },
+    {
+      "id": "104",
+      "title": "Test task filters",
+      "description": "Check search, priority, user and sorting controls.",
+      "priority": "High",
+      "assignedTo": "Rohan",
+      "status": "todo",
+      "dueDate": "2026-09-25",
+      "category": "Development"
+    },
+    {
+      "id": "105",
+      "title": "Plan next week's goals",
+      "description": "Write three realistic goals for the coming week.",
+      "priority": "Medium",
+      "assignedTo": "Ananya",
+      "status": "completed",
+      "dueDate": "2026-09-24",
+      "category": "Personal"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Ananya"
+    },
+    {
+      "id": "2",
+      "name": "Kiran"
+    },
+    {
+      "id": "3",
+      "name": "Meera"
+    },
+    {
+      "id": "4",
+      "name": "Rohan"
+    }
+  ]
+}

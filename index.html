@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Taskmanagement personal productivity dashboard">
+    <title>TaskNest | Personal Planner</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="app-shell">
+
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-mark">TN</div>
+                <div>
+                    <h1>TaskNest</h1>
+                    <span>Personal Planner</span>
+                </div>
+            </div>
+
+            <nav class="side-nav" aria-label="Main navigation">
+                <button class="nav-item active" data-section="overview">
+                    <span>⌂</span> Overview
+                </button>
+                <button class="nav-item" data-section="tasks">
+                    <span>☷</span> My Tasks
+                </button>
+                <button class="nav-item" data-section="completed">
+                    <span>✓</span> Completed
+                </button>
+            </nav>
+
+            <div class="side-tip">
+                <div class="tip-icon">✦</div>
+                <strong>Small steps matter</strong>
+                <p>Plan clearly, finish steadily, and keep your week moving.</p>
+            </div>
+
+            <button id="themeBtn" class="theme-btn">☾ Dark mode</button>
+
+            <div class="sidebar-footer">
+                <span class="status-dot"></span>
+                <span>Workspace ready</span>
+            </div>
+        </aside>
+
+        <main class="content">
+
+            <header class="top-header">
+                <div>
+                    <p class="eyebrow">TASK MANAGEMENT WORKSPACE</p>
+                    <h2 id="greeting">Good day 👋</h2>
+                    <p class="subheading">Turn your plans into visible progress.</p>
+                </div>
+
+                <button id="addTaskBtn" class="primary-btn">
+                    <span>＋</span> New task
+                </button>
+            </header>
+
+            <section class="hero-card">
+                <div>
+                    <span class="hero-chip">YOUR FOCUS</span>
+                    <h3>Let's get things done.</h3>
+                    <p>Keep important work visible and move each task one step forward.</p>
+                </div>
+                <div class="hero-orbit" aria-hidden="true">
+                    <span>✓</span>
+                    <span>+</span>
+                    <span>→</span>
+                </div>
+            </section>
+
+            <section class="stats-grid" aria-label="Task statistics">
+                <article class="stat-card">
+                    <div class="stat-icon violet">▦</div>
+                    <div>
+                        <span>Total tasks</span>
+                        <strong id="totalTasks">0</strong>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon amber">◷</div>
+                    <div>
+                        <span>In progress</span>
+                        <strong id="progressTasksStat">0</strong>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon green">✓</div>
+                    <div>
+                        <span>Completed</span>
+                        <strong id="completedTasksStat">0</strong>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon rose">!</div>
+                    <div>
+                        <span>Overdue</span>
+                        <strong id="overdueTasks">0</strong>
+                    </div>
+                </article>
+            </section>
+
+            <section class="progress-panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">WEEKLY MOMENTUM</p>
+                        <h3>Your progress</h3>
+                    </div>
+                    <strong id="completionPercentage">0%</strong>
+                </div>
+                <div class="progress-track">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <p id="progressText">Start completing tasks to see your progress.</p>
+            </section>
+
+            <section id="taskWorkspace" class="workspace-section">
+                <div class="section-heading workspace-heading">
+                    <div>
+                        <p class="eyebrow">WORKSPACE</p>
+                        <h3>Task board</h3>
+                    </div>
+                    <span id="visibleTaskCount" class="result-count">0 tasks</span>
+                </div>
+
+                <div class="filters">
+                    <label class="search-box">
+                        <span>⌕</span>
+                        <input id="searchInput" type="search" placeholder="Search title or description...">
+                    </label>
+
+                    <select id="priorityFilter" aria-label="Filter by priority">
+                        <option value="All">All priorities</option>
+                        <option value="High">High priority</option>
+                        <option value="Medium">Medium priority</option>
+                        <option value="Low">Low priority</option>
+                    </select>
+
+                    <select id="userFilter" aria-label="Filter by user">
+                        <option value="All">Everyone</option>
+                    </select>
+
+                    <select id="sortFilter" aria-label="Sort tasks">
+                        <option value="none">Sort tasks</option>
+                        <option value="priority">Priority</option>
+                        <option value="dueDate">Due date</option>
+                        <option value="title">Task name</option>
+                    </select>
+
+                    <button id="clearFiltersBtn" class="ghost-btn">Reset</button>
+                </div>
+
+                <div class="kanban-board">
+                    <section class="kanban-column todo-column">
+                        <div class="column-heading">
+                            <div>
+                                <span class="column-dot todo-dot"></span>
+                                <h4>To do</h4>
+                            </div>
+                            <span id="todoCount" class="count-pill">0</span>
+                        </div>
+                        <div id="todoTasks" class="task-list" data-status="todo"></div>
+                    </section>
+
+                    <section class="kanban-column progress-column">
+                        <div class="column-heading">
+                            <div>
+                                <span class="column-dot progress-dot"></span>
+                                <h4>In progress</h4>
+                            </div>
+                            <span id="progressCount" class="count-pill">0</span>
+                        </div>
+                        <div id="progressTasks" class="task-list" data-status="in-progress"></div>
+                    </section>
+
+                    <section class="kanban-column completed-column">
+                        <div class="column-heading">
+                            <div>
+                                <span class="column-dot completed-dot"></span>
+                                <h4>Completed</h4>
+                            </div>
+                            <span id="completedCount" class="count-pill">0</span>
+                        </div>
+                        <div id="completedTasks" class="task-list" data-status="completed"></div>
+                    </section>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="alarmBox" class="alarm-box" role="alert">
+        <div class="alarm-symbol">⏰</div>
+        <div>
+            <strong>Deadline today</strong>
+            <p id="alarmMessage">You have tasks due today.</p>
+        </div>
+        <button id="stopAlarmBtn" class="alarm-stop">Stop</button>
+    </div>
+
+    <audio id="alarmSound" preload="auto" loop>
+        <source src="alarm.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="taskModal" class="modal" aria-hidden="true">
+        <div class="modal-card">
+            <button class="modal-close" id="cancelBtn" type="button">×</button>
+            <p class="eyebrow">TASK EDITOR</p>
+            <h3 id="modalTitle">Create a new task</h3>
+
+            <form id="taskForm">
+                <div class="form-grid">
+                    <label class="full">
+                        Task title
+                        <input id="taskTitle" type="text" placeholder="e.g. Prepare project presentation" required>
+                    </label>
+
+                    <label class="full">
+                        Description
+                        <textarea id="taskDescription" rows="4" placeholder="What needs to be done?" required></textarea>
+                    </label>
+
+                    <label>
+                        Priority
+                        <select id="taskPriority" required>
+                            <option value="">Choose priority</option>
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Assigned to
+                        <select id="taskAssignedTo" required></select>
+                    </label>
+
+                    <label>
+                        Category
+                        <select id="taskCategory">
+                            <option value="Study">Study</option>
+                            <option value="Development">Development</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Planning">Planning</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Due date
+                        <input id="taskDueDate" type="date" required>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button id="cancelFormBtn" type="button" class="ghost-btn">Cancel</button>
+                    <button type="submit" class="primary-btn">Save task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="viewTaskModal" class="modal" aria-hidden="true">
+        <div class="modal-card details-card">
+            <button class="modal-close" id="closeViewBtn" type="button">×</button>
+            <p class="eyebrow">TASK DETAILS</p>
+            <h3 id="viewTaskTitle">Task</h3>
+
+            <div class="detail-grid">
+                <div><span>Description</span><strong id="viewDescription"></strong></div>
+                <div><span>Priority</span><strong id="viewPriority"></strong></div>
+                <div><span>Assigned to</span><strong id="viewAssignedTo"></strong></div>
+                <div><span>Status</span><strong id="viewStatus"></strong></div>
+                <div><span>Due date</span><strong id="viewDueDate"></strong></div>
+                <div><span>Category</span><strong id="viewCategory"></strong></div>
+            </div>
+
+            <button id="closeDetailsBtn" type="button" class="primary-btn full-btn">Done</button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
