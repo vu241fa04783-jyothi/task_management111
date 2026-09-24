@@ -4,7 +4,7 @@ import {
     updateTask,
     deleteTask,
     getUsers
-} from "./service/taskService.js";
+} from "./taskService.js";
 
 let allTasks = [];
 let users = [];
